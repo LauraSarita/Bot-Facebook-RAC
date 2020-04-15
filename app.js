@@ -41,7 +41,7 @@ res.sendStatus(200);
 
 //Se la enviamos desdel principio
 //funcion manejo de eventos
-function handleEvent1(senderId, event){
+function handleEvent(senderId, event){
 
 if(event.message)
 {
@@ -54,21 +54,6 @@ else if(event.postback){
 }
 
 }
-
-function handleEvent(senderId, event) {
-    if (event.message) {
-        if (event.message.quick_replies) {
-            handlePostBack(senderId, event.message.quick_replies.payload);
-        } else {
-            handleMessage(senderId, event.message);
-        }
-    }
-    else if (event.postback) {
-        handlePostBack(senderId, event.postback.payload);
-    }
-}
-
-
 
 
 
@@ -89,19 +74,8 @@ function defaultMessage(senderId) {
             "id": senderId
         },
         "message": {
-            "text": "Hola soy un bot de messenger y te invito a utilizar nuestro menu",
-            "quick_replies": [
-                {
-                    "content_type": "text",
-                    "title": "¿Buscas Apto?",
-                    "payload": "CONSTRUCCIONES_PAYLOAD"
-                },
-                {
-                    "content_type": "text",
-                    "title": "Llamanos",
-                    "payload": "MILA_PAYLOAD"
-                }
-            ]
+            "text": "!Hola soy un bot de messenger y te invito a utilizar nuestro menú! ",
+            
         }
     }
     senderActions(senderId)
@@ -144,7 +118,10 @@ function handlePostback(senderId, payload) {
                 case "MILA_PAYLOAD":
              senderActions(senderId)
             contactSupportMila(senderId);
-            break;            
+            break;
+            case "PROMOCIONES_PAYLOAD":
+                contactSupportMila(senderId);
+            break;               
 
           }    
 
