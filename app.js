@@ -7,7 +7,7 @@ const access_token = "EAAJOtQvjzZBkBAHa0ekfCZB0IZAuBlBEMbd9lc7JugszVpVsJaJ8xfjjt
 
 const app = express();
 
-app.set('port' , 3000);
+app.set('port' , (process.env.PORT || 3000 ));
 app.use(bodyParser.json());
 
 app.get('/',function (req, response){
